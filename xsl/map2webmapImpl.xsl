@@ -19,8 +19,13 @@
   </xsl:template>
 
   <xsl:template match="*[df:class(., 'map/map')]" mode="generate-webmap-content">  
-  	<xsl:apply-templates mode="#current" />
+  	<xsl:apply-templates mode="#current" >
+  		<xsl:with-param name="documentation-title" select="*[contains(@class, ' topic/title ')][1]" as="xs:string" tunnel="yes"/>
+  	</xsl:apply-templates>
   </xsl:template>
+   
+   
+  <xsl:template match="*" mode="generate-webmap-content"/>
    
   <xsl:template match="*[contains(@class, 'webmap-d/page')]" mode="generate-webmap-content">
     <xsl:param name="rootMapDocUrl" as="xs:string" tunnel="yes"/>
@@ -56,7 +61,7 @@
     
     <xsl:variable name="topic-title" select="'My title'"/>
 
-   <xsl:message>+ [INFO]  Generating page <xsl:value-of select="$topicResultUri" /></xsl:message>
+   <xsl:message> + [INFO]  Generating page <xsl:value-of select="$topicResultUri" /></xsl:message>
     <xsl:result-document href="{$topicResultUri}" format="indented-xml">
     
      <xsl:apply-templates mode="generate-html5-page" select=".">
@@ -67,5 +72,6 @@
       </xsl:apply-templates>
     </xsl:result-document>
   </xsl:template>
+
 
 </xsl:stylesheet>
