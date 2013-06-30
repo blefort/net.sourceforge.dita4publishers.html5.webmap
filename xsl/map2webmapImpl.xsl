@@ -6,6 +6,7 @@
   exclude-result-prefixes="df xs relpath htmlutil xd dc" version="2.0">
 
   <xsl:output method="html" standalone="no" indent="yes"/>
+  <xsl:param name="OUTPUTDEFAULTNAVIGATION" select="false()" />
 
   <xsl:template match="*[df:class(., 'map/map')]" priority="50" mode="generate-root-pages"/>
 
@@ -33,22 +34,29 @@
 				<xsl:value-of select="@destination"/>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:value-of select="concat('page-', $countPages)"/>
+				<xsl:choose>
+					<xsl:when test="$countPages = 0">
+						<xsl:value-of select="'index'"/>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="concat('page-', $countPages)"/>
+					</xsl:otherwise>
+				</xsl:choose>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:variable>
 	
-    <xsl:variable name="topicResultUri" select="concat($pageIndex, OUTEXT)" as="xs:string"/>
-      
-  <xsl:message> mapgroup-d/topicset webmap-d/page catched <xsl:value-of select="$topicResultUri" /></xsl:message>
+    <xsl:variable name="topicResultUri" select="concat($pageIndex, $OUTEXT)" as="xs:string"/>
+  
     <xsl:variable name="topic-content">
-      <h1>My website title</h1>
+     	<xsl:apply-templates select="*" mode="#current" />
     </xsl:variable>
 
     <xsl:variable name="relativePath" select="'./'"/>
-
+    
     <xsl:variable name="topic-title" select="'My title'"/>
 
+   <xsl:message>+ [INFO]  Generating page <xsl:value-of select="$topicResultUri" /></xsl:message>
     <xsl:result-document href="{$topicResultUri}" format="indented-xml">
     
      <xsl:apply-templates mode="generate-html5-page" select=".">
