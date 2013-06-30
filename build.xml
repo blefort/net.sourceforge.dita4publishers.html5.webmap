@@ -1,0 +1,3 @@
+<project>
+	<import file="build_webmap_html5.xml" />
+</project>

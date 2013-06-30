@@ -1,0 +1,24 @@
+<project name="dita2webmap" default="dita2webmap" xmlns:dita="http://dita-ot.sourceforge.net">
+
+	<property name="transtype" value="webmap"/>
+	<dirname property="dita2webmap.dir" file="${ant.file.dita2webmap}"/>
+
+	<target name="dita2webmap" 
+		xmlns:dita="http://dita-ot.sourceforge.net"
+		dita:extension="depends org.dita.dost.platform.InsertDependsAction"
+		depends="xslt.diseable.chunk"
+		>
+
+		<antcall target="dita2html5">
+			<param name="map2html5.style" value="${dita2webmap.dir}/xsl/map2webmap.xsl"/>
+			<param name="html5.site.theme" value="html5-webmap" />
+		</antcall>
+
+	</target>
+	
+	 <target name="xslt.diseable.chunk">
+      <echo> ++ Disabling default chunk processing</echo>
+      <property name="preprocess.chunk.skip" value="yes"/>
+   </target>
+
+</project>
