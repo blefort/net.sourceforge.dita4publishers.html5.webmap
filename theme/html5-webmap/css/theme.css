@@ -132,7 +132,7 @@ div.nav-pub-title h2 {
 	margin-left: 20px;
 }
 
-#topic-content {
+body #topic-content {
 	display: block;
 	background-color: #FFFFFF;
 	border: 1px solid #dfdfdf;
@@ -143,7 +143,7 @@ div.nav-pub-title h2 {
 	-webkit-box-shadow: 3px 3px 4px #ccc;
 	box-shadow: 3px 3px 4px #ccc;
 	min-height: 500px;
-	padding: 40px 60px 20px 80px;
+	padding: 0px;
 	margin: 20px 0;
 }
 
