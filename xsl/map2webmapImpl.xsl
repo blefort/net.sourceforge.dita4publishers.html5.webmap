@@ -5,6 +5,12 @@
   xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:dc="http://purl.org/dc/elements/1.1/"
   exclude-result-prefixes="df xs relpath htmlutil xd dc" version="2.0">
 
+ <xsl:include href="webmap-layout.xsl"/>
+ <xsl:include href="webmap-topic-extract.xsl"/>
+ <xsl:include href="webmap-topic-content.xsl"/>
+ <xsl:include href="webmap-navtitle.xsl"/>
+ <xsl:include href="devel.xsl"/>
+ 
   <xsl:output method="html" standalone="no" indent="yes"/>
   <xsl:param name="OUTPUTDEFAULTNAVIGATION" select="false()" />
 
