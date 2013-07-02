@@ -5,6 +5,7 @@
   xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xmlns:dc="http://purl.org/dc/elements/1.1/"
   exclude-result-prefixes="df xs relpath htmlutil xd dc" version="2.0">
 
+ <xsl:include href="webmap-sectioning.xsl"/>
  <xsl:include href="webmap-layout.xsl"/>
  <xsl:include href="webmap-topic-extract.xsl"/>
  <xsl:include href="webmap-topic-content.xsl"/>
@@ -42,7 +43,7 @@
 	<xsl:variable name="pageIndex">
 		<xsl:choose>
 			<xsl:when test="@destination">
-				<xsl:value-of select="@destination"/>
+				<xsl:value-of select="@href"/>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:choose>
@@ -68,8 +69,8 @@
     <xsl:variable name="topic-title" select="'My title'"/>
 
    <xsl:message> + [INFO]  Generating page <xsl:value-of select="$topicResultUri" /></xsl:message>
-    <xsl:result-document href="{$topicResultUri}" format="indented-xml">
-    
+   
+    <xsl:result-document href="{$topicResultUri}" format="indented-xml">    
      <xsl:apply-templates mode="generate-html5-page" select=".">
         <xsl:with-param name="relativePath" select="$relativePath" as="xs:string" tunnel="yes"/>
         <xsl:with-param name="content" select="$topic-content" tunnel="yes"/>
