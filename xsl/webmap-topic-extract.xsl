@@ -10,18 +10,21 @@
   version="2.0">
 
   <xsl:template match="*[contains(@class, 'webmap-d/extractor')][contains(@class, 'extractor/block')]" mode="generate-webmap-content">
+    
     <xsl:param name="level" as="xs:integer" select="2" tunnel="yes" />
+    
     <xsl:message> + [INFO] - extracting topic <xsl:value-of select="@href" /></xsl:message>
+    
     <xsl:variable name="topic" select="document(@href)"/>
     
     <div class="{concat('block ', @outputclass)}">
     
     	<xsl:element name="{concat('h', $level)}">
-    		<xsl:apply-templates select="*" mode="topic-navtitle" />
+    		<xsl:apply-templates select="$topic" mode="topic-navtitle" />
     	</xsl:element>
     	
     	<div>
-    		<xsl:apply-templates select="*" mode="topic-content" />
+    		<xsl:apply-templates select="$topic" mode="topic-content" />
     	</div>
     
     </div>
