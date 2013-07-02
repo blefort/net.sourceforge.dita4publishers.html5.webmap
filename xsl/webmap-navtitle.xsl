@@ -7,7 +7,7 @@
   exclude-result-prefixes="df xs relpath htmlutil xd dc" version="2.0">
   
   <xsl:template match="*" mode="topic-navtitle">
-  	<xsl:value-of select="descendant::*[contains(@class, 'navtitle')][1]"/> 
+  	<xsl:value-of select="descendant::*[contains(@class, 'topic/title')][1]"/> 
   </xsl:template>
  
  

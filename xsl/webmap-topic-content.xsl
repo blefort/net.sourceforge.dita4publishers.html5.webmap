@@ -9,11 +9,15 @@
   <xsl:template match="*[contains(@class, ' topic/title ')]" mode="topic-content" />
  
   <xsl:template match="*[contains(@class, ' topic/shortdesc ')]" mode="topic-content">
-     <p><xsl:value-of select="." /></p>
+     <xsl:apply-templates />
+  </xsl:template>
+  
+  <xsl:template match="*[contains(@class, ' topic/body ')]" mode="topic-content">
+     <xsl:apply-templates />
   </xsl:template>
   
   <xsl:template match="*" mode="topic-content">
-     <p><xsl:value-of select="." /></p>
-  </xsl:template>
+  	<xsl:apply-templates />
+   </xsl:template>
  
 </xsl:stylesheet>
