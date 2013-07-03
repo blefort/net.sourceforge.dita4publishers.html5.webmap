@@ -17,5 +17,41 @@
     </article>
     
   </xsl:template>
+  
+  <xsl:template match="*[contains(@class, 'map/topicref')][contains(@class, 'webmap-d/section')]" mode="generate-webmap-content">
+ 
+    <xsl:call-template name="debug-template">
+    	<xsl:with-param name="name" select="'article'" />
+    </xsl:call-template>
+    
+    <section class="{@outputclass}">
+    	<xsl:apply-templates select="*" mode="#current"/>
+    </section>
+    
+  </xsl:template>
+  
+  <xsl:template match="*[contains(@class, 'map/topicref')][contains(@class, 'webmap-d/aside')]" mode="generate-webmap-content">
+ 
+    <xsl:call-template name="debug-template">
+    	<xsl:with-param name="name" select="'article'" />
+    </xsl:call-template>
+    
+    <aside class="{@outputclass}">
+    	<xsl:apply-templates select="*" mode="#current"/>
+    </aside>
+    
+  </xsl:template>
+
+ <xsl:template match="*[contains(@class, 'map/topicref')][contains(@class, 'webmap-d/main')]" mode="generate-webmap-content">
+ 
+    <xsl:call-template name="debug-template">
+    	<xsl:with-param name="name" select="'article'" />
+    </xsl:call-template>
+    
+    <main class="{@outputclass}">
+    	<xsl:apply-templates select="*" mode="#current"/>
+    </main>
+    
+  </xsl:template>
  
 </xsl:stylesheet>
